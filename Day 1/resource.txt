@@ -1,0 +1,12 @@
+React Documentation: react.dev
+React Codesandbox: react.new
+BabelJS: babeljs.io
+
+// For development Environment
+VScode: https://code.visualstudio.com/
+Brave Browser: https://brave.com/
+NodeJS: https://nodejs.org/en
+
+// Some Content
+Vite: https://vite.dev/
+NextJS: https://nextjs.org/

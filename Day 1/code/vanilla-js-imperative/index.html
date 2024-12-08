@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>
+        Get Advice
+    </title>
+</head>
+<body>
+    <div class="advice"></div>
+    <button class="btn">Get Advice</button>
+    <p>You have already taken <strong class="count"></strong> advice. You can ask more don't worry about it</p>
+
+    <script>
+        let adviceEl = document.querySelector(".advice")
+        let btnEl = document.querySelector(".btn")
+        let countEl = document.querySelector(".count")
+
+        let getAdvice = async function () {
+            let res = await fetch("https://api.adviceslip.com/advice")
+            let data = await res.json()
+            advice = data.slip.advice
+            count = count + 1
+
+            countEl.textContent = count;
+            adviceEl.textContent = advice;
+        }
+
+        let count = 0;
+        let advice;
+        getAdvice()
+
+        btnEl.addEventListener("click", getAdvice)
+
+    </script>
+</body>
+</html>
