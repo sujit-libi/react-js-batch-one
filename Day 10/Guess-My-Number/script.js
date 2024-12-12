@@ -9,6 +9,8 @@ let highscore1 = document.querySelector('.highscore')
 let guess = document.querySelector('.guess')
 // let htmlScore = Number(document.querySelector('.score').textContent)
 
+document.querySelector('.sample').innerHTML = `<a href="https://google.com" target="_blank" >hello</a>`
+
 // document.querySelector('.number').textContent = randomSecretNum;
 
 document.querySelector('.check').addEventListener('click', () => {
