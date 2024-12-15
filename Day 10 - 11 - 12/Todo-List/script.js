@@ -1,24 +1,30 @@
-document.querySelector('.add').addEventListener('click',() => {
-  const li = document.createElement("li")
-  const div = document.createElement("div")
-  const btn = document.createElement("btn")
-  li.setAttribute("class", "list-group-item")
-  div.setAttribute("class", "input-group mb-2")
-  btn.setAttribute("class","remove btn btn-danger")
-  if(document.querySelector('.form-control').value){
+// document.querySelector('.add').addEventListener('click', () => {
+//   let task = document.querySelector('.input').value
+//   if(task){
+//     // document.querySelector('.list-item-3').textContent = task
+//     let li = document.createElement('li')
+//     // <li>Thos is parag</li>
+//     li.setAttribute("class","list-item-4")
+//     let node = document.createTextNode(task)
+//     li.appendChild(node)
 
-    const node = document.createTextNode(document.querySelector('.form-control').value)
-    li.appendChild(node)
-    const btnNode = document.createTextNode("Remove")
-    btn.appendChild(btnNode)
-    div.appendChild(li)
-    div.appendChild(btn)
+//     let ul = document.querySelector('.list')
+//     ul.appendChild(li)
+//   }
 
-    const parent = document.querySelector('.list-group')
-    parent.appendChild(div)
-  }
-})
+// })
 
-document.querySelector('.remove').addEventListener('click', () => {
-  console.log("Remove")
-})
+//  const li = document.createElement('li')
+//  // <li></li>
+//  const node = document.createTextNode("this is paragrap")
+//  // This is paragraph
+//  li.appendChild(node)
+//  // <li>This is paragraph</li>
+
+//  const parent = document.querySelector('.container')
+//  parent.appendChild(li)
+
+
+let str = document.querySelector('.list-item-2')
+console.log(str.textContent)
+str.innerHTML = "Buy <strong>eat</strong>"
