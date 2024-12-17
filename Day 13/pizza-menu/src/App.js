@@ -18,7 +18,7 @@ const pizzaData = [
     ingredients: 'Tomato, mozarella, spinach, and ricotta cheese',
     price: 12,
     photoName: 'pizzas/spinaci.jpg',
-    soldOut: false,
+    soldOut: true,
   },
   {
     name: 'Pizza Funghi',
@@ -67,27 +67,55 @@ function Menu() {
     fontSize: '48px',
     textTransform: 'uppercase',
   };
+  const pizzas = pizzaData;
+  // const pizzas = [];
+  const numPizza = pizzas.length;
+  // numPizza: 0
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      {pizzaData.map((pizza) => {
-        return (
-          <Pizza
-            name={pizza.name}
-            ingredients={pizza.ingredients}
-            photoName={pizza.photoName}
-            price={pizza.price}
-            soldOut={pizza.soldOut}
-          />
-        );
-      })}
+      {/* Conditional Rendering with && */}
+      {/* {numPizza !== 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => {
+            return (
+              <Pizza
+                name={pizza.name}
+                ingredients={pizza.ingredients}
+                photoName={pizza.photoName}
+                price={pizza.price}
+                soldOut={pizza.soldOut}
+              />
+            );
+          })}
+        </ul>
+      )} */}
+
+      {/* Conditional Rendering with Terneries Operator */}
+      {numPizza ? (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => {
+            // if (pizza.soldOut) return null;
+            return (
+              <Pizza
+                name={pizza.name}
+                ingredients={pizza.ingredients}
+                photoName={pizza.photoName}
+                price={pizza.price}
+                soldOut={pizza.soldOut}
+              />
+            );
+          })}
+        </ul>
+      ) : (
+        <p>We are working on our menu. Please have patience and stay tune</p>
+      )}
       {/* <Pizza
         name="Pizza spinaci"
         price="340"
         photoName="pizzas/spinaci.jpg"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
       />
-
       <Pizza
         name="Pizza spinaci 1"
         price="350"
@@ -98,17 +126,16 @@ function Menu() {
   );
 }
 
-function Pizza({ name, ingredients, price, photoName, soldOut1 }) {
-  console.log(soldOut1, 'Spould');
+function Pizza({ name, ingredients, price, photoName, soldOut }) {
   return (
-    <div className="pizza">
+    <li className={`pizza ${soldOut ? 'sold-out' : ''}`}>
       <img src={photoName} />
       <div>
-        <p>{name}</p>
+        <h3>{name}</h3>
         <p>{ingredients}</p>
-        <span>NRS. {price}</span>
+        <span>{!soldOut ? `NRS. ${price}` : 'Sold Out'}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
@@ -126,7 +153,25 @@ function Footer() {
   const isOpen = hour >= openingHour && hour <= closingHour;
 
   return (
-    <footer className="footer">{new Date().toLocaleTimeString()} Footer</footer>
+    <footer className="footer">
+      <div className="order">
+        {isOpen ? (
+          <Order />
+        ) : (
+          <p>Sorry We're closed for now please visit us later</p>
+        )}
+      </div>
+      {/* {new Date().toLocaleTimeString()} Footer */}
+    </footer>
+  );
+}
+
+function Order() {
+  return (
+    <>
+      <p>We are opened now. You can come over and have delicious pizza</p>
+      <button className="btn">Order Now</button>
+    </>
   );
 }
 
