@@ -18,7 +18,19 @@ function App() {
   }
 
   return (
-    <div className="steps">
+    <>
+      <center>
+        <div>
+          Steps: <button>-</button> 1 <button>+</button>
+        </div>
+        <hr />
+        <div>
+          Count: <button>-</button> 1 <button>+</button>
+        </div>
+        <hr />
+        <div>{new Date().toLocaleDateString()}</div>
+      </center>
+      {/* <div className="steps">
       <div className="numbers">
         <div className={`${num >= 0 ? 'active' : ''}`}>1</div>
         <div className={`${num >= 1 ? 'active' : ''}`}>2</div>
@@ -39,7 +51,8 @@ function App() {
           Next
         </button>
       </div>
-    </div>
+    </div> */}
+    </>
   );
 }
 
