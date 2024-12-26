@@ -47,6 +47,8 @@ const tempWatchedData = [
   },
 ];
 
+//Props Drilling
+
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -55,20 +57,23 @@ export default function App() {
 
   return (
     <>
-      <Navbar movies={movies} />
-      <Main movies={movies} />
+      <Navbar>
+        <Logo />
+        <Searchbar />
+        <MovieResultLength movies={movies} />
+      </Navbar>
+      <Main>
+        <MovieListBox>
+          <MovieList movies={movies} />
+        </MovieListBox>
+        <WatchedMovieListBox movies={movies} />
+      </Main>
     </>
   );
 }
 
-function Navbar({ movies }) {
-  return (
-    <nav className="nav-bar">
-      <Logo />
-      <Searchbar />
-      <MovieResultLength movies={movies} />
-    </nav>
-  );
+function Navbar({ children }) {
+  return <nav className="nav-bar">{children}</nav>;
 }
 
 function MovieResultLength({ movies }) {
@@ -101,13 +106,8 @@ function Searchbar() {
   );
 }
 
-function Main({ movies }) {
-  return (
-    <main className="main">
-      <MovieListBox movies={movies} />
-      <WatchedMovieListBox movies={movies} />
-    </main>
-  );
+function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
 
 const WatchedMovieListBox = ({ movies }) => {
@@ -194,7 +194,7 @@ const WatchedSummary = ({ watched }) => {
   );
 };
 
-const MovieListBox = ({ movies }) => {
+const MovieListBox = ({ children }) => {
   const [isOpen1, setIsOpen1] = useState(true);
   return (
     <div className="box">
@@ -204,7 +204,7 @@ const MovieListBox = ({ movies }) => {
       >
         {isOpen1 ? '–' : '+'}
       </button>
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen1 && children}
     </div>
   );
 };
