@@ -1,5 +1,5 @@
-export default function Modal() {
-  return <div>This is modal</div>;
+export default function Modal({ children, element }) {
+  return element;
 }
 
 function SuccessMsg() {
@@ -8,4 +8,21 @@ function SuccessMsg() {
 
 function ErrorMsg() {
   return <div>Error Message</div>;
+}
+
+function WarningMsg() {
+  return <div>WAring Message</div>;
+}
+
+{
+  /* <Modal element={<WarningMsg />}>
+
+
+<Modal>
+  <SuccessMsg />
+</ Modal>
+
+<Modal>
+  <ErrorMsg />
+</ Modal> */
 }
