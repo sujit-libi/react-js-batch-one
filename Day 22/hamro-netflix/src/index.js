@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import StarRating from './StarRating';
-// import './index.css';
+import './index.css';
 import App from './App';
 import Modal from './Modal';
 import RatingStar from './RatingStar';
@@ -27,11 +27,11 @@ root.render(
     {/* <Modal /> */}
     {/* <RatingStar maxRating={10} color={'red'} size={32} />
     <RatingStar maxRating={5} color={'green'} size={28} /> */}
-    <Test />
+    {/* <Test /> */}
 
     {/* <RatingStar maxRating={10} color={'blue'} size={14} /> */}
 
-    {/* <App /> */}
+    <App />
     {/* <StarRating
       maxRating={5}
       message={['Terrible', 'Bad', 'Okay', 'Good', 'Amazing']}

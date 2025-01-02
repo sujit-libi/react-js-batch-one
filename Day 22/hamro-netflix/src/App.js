@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, use } from 'react';
 
 const tempMovieData = [
   {
@@ -52,6 +52,32 @@ const average = (arr) =>
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatched] = useState(tempWatchedData);
+
+  const OMDB_API_KEY = '589afbe';
+  const movieName = 'Avenger';
+
+  // Using Promise
+  // useEffect(() => {
+  //   fetch(
+  //     `http://www.omdbapi.com/?i=tt3896198&apikey=${OMDB_API_KEY}&s=${movieName}`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => setMovies(data.Search));
+  // }, []);
+
+  // Using Async Await
+  useEffect(() => {
+    const fetchMovie = async () => {
+      const response = await fetch(
+        `http://www.omdbapi.com/?i=tt3896198&apikey=${OMDB_API_KEY}&s=${movieName}`
+      );
+      const data = await response.json();
+      console.log(data.Search);
+      setMovies(data.Search);
+    };
+    fetchMovie();
+  }, []);
 
   return (
     <>
@@ -64,7 +90,10 @@ export default function App() {
         <MovieListBox>
           <MovieList movies={movies} />
         </MovieListBox>
-        <WatchedMovieListBox movies={movies} />
+        <WatchedMovieListBox>
+          <WatchedSummary watched={watched} />
+          <WatchedMovieList watched={watched} />
+        </WatchedMovieListBox>
       </Main>
     </>
   );
@@ -108,9 +137,23 @@ function Main({ children }) {
   return <main className="main">{children}</main>;
 }
 
-const WatchedMovieListBox = ({ movies }) => {
+const MovieListBox = ({ children }) => {
+  const [isOpen1, setIsOpen1] = useState(true);
+  return (
+    <div className="box">
+      <button
+        className="btn-toggle"
+        onClick={() => setIsOpen1((open) => !open)}
+      >
+        {isOpen1 ? '–' : '+'}
+      </button>
+      {isOpen1 && children}
+    </div>
+  );
+};
+
+const WatchedMovieListBox = ({ children }) => {
   const [isOpen2, setIsOpen2] = useState(true);
-  const [watched, setWatched] = useState(tempWatchedData);
 
   return (
     <div className="box">
@@ -120,15 +163,35 @@ const WatchedMovieListBox = ({ movies }) => {
       >
         {isOpen2 ? '–' : '+'}
       </button>
-      {isOpen2 && (
-        <>
-          <WatchedSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
-        </>
-      )}
+      {isOpen2 && children}
     </div>
   );
 };
+
+function MovieList({ movies }) {
+  return (
+    <ul className="list">
+      {movies?.map((movie) => (
+        <MovieListItem movie={movie} key={movie.imdbID} />
+      ))}
+    </ul>
+  );
+}
+
+function MovieListItem({ movie }) {
+  return (
+    <li>
+      <img src={movie.Poster} alt={`${movie.Title} poster`} />
+      <h3>{movie.Title}</h3>
+      <div>
+        <p>
+          <span>🗓</span>
+          <span>{movie.Year}</span>
+        </p>
+      </div>
+    </li>
+  );
+}
 
 const WatchedMovieList = ({ watched }) => {
   return (
@@ -191,43 +254,3 @@ const WatchedSummary = ({ watched }) => {
     </div>
   );
 };
-
-const MovieListBox = ({ children }) => {
-  const [isOpen1, setIsOpen1] = useState(true);
-  return (
-    <div className="box">
-      <button
-        className="btn-toggle"
-        onClick={() => setIsOpen1((open) => !open)}
-      >
-        {isOpen1 ? '–' : '+'}
-      </button>
-      {isOpen1 && children}
-    </div>
-  );
-};
-
-function MovieList({ movies }) {
-  return (
-    <ul className="list">
-      {movies?.map((movie) => (
-        <MovieListItem movie={movie} key={movie.imdbID} />
-      ))}
-    </ul>
-  );
-}
-
-function MovieListItem({ movie }) {
-  return (
-    <li>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <p>
-          <span>🗓</span>
-          <span>{movie.Year}</span>
-        </p>
-      </div>
-    </li>
-  );
-}
