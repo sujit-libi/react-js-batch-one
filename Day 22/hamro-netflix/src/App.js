@@ -51,11 +51,13 @@ const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [query, setQuery] = useState('');
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [watched, setWatched] = useState(tempWatchedData);
 
   const OMDB_API_KEY = '589afbe';
-  const movieName = 'Avenger';
 
   // Using Promise
   // useEffect(() => {
@@ -69,26 +71,42 @@ export default function App() {
   // Using Async Await
   useEffect(() => {
     const fetchMovie = async () => {
-      const response = await fetch(
-        `http://www.omdbapi.com/?i=tt3896198&apikey=${OMDB_API_KEY}&s=${movieName}`
-      );
-      const data = await response.json();
-      console.log(data.Search);
-      setMovies(data.Search);
+      try {
+        setErrorMessage('');
+        if (query) {
+          setIsLoading(true);
+          const response = await fetch(
+            `http://www.omdbapi.com/?i=tt3896198&apikey=${OMDB_API_KEY}&s=${query}`
+          );
+          if (!response.ok) throw new Error('Network Error');
+          const data = await response.json();
+          if (!data.Search) throw new Error('Movie Not found');
+          setMovies(data.Search);
+        }
+      } catch (error) {
+        console.error('Something went wrong', error);
+        setErrorMessage(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchMovie();
-  }, []);
+  }, [query]);
 
   return (
     <>
       <Navbar>
         <Logo />
-        <Searchbar />
+        <Searchbar query={query} setQuery={setQuery} />
         <MovieResultLength movies={movies} />
       </Navbar>
       <Main>
         <MovieListBox>
-          <MovieList movies={movies} />
+          {isLoading && <Loader />}
+          {!isLoading && errorMessage && (
+            <ErrorMessage message={errorMessage} />
+          )}
+          {!isLoading && !errorMessage && <MovieList movies={movies} />}
         </MovieListBox>
         <WatchedMovieListBox>
           <WatchedSummary watched={watched} />
@@ -97,6 +115,14 @@ export default function App() {
       </Main>
     </>
   );
+}
+
+function ErrorMessage({ message }) {
+  return <div className="error">{message}</div>;
+}
+
+function Loader() {
+  return <div className="loader">Loading......</div>;
 }
 
 function Navbar({ children }) {
@@ -120,8 +146,7 @@ function Logo() {
   );
 }
 
-function Searchbar() {
-  const [query, setQuery] = useState('');
+function Searchbar({ query, setQuery }) {
   return (
     <input
       className="search"
@@ -180,7 +205,7 @@ function MovieList({ movies }) {
 
 function MovieListItem({ movie }) {
   return (
-    <li>
+    <li className="list list-movies">
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
