@@ -1,4 +1,5 @@
 import { useState, useEffect, use } from 'react';
+import RatingStar from './RatingStar';
 
 const tempMovieData = [
   {
@@ -57,7 +58,7 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
 
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
@@ -198,9 +199,21 @@ function MovieDetail({ movieId, handleCloseMovieDetail }) {
           </p>
         </div>
       </header>
-      <section></section>
-
-      {movieId}
+      <section>
+        <div className="rating">
+          <RatingStar />
+          <button className="btn-add">+ Add to list</button>
+        </div>
+        <p>
+          Plot: <em>{movieDetail.Plot}</em>
+        </p>
+        <p>
+          Actor/Actress: <em>{movieDetail.Actors}</em>
+        </p>
+        <p>
+          Directed By: <em>{movieDetail.Director}</em>
+        </p>
+      </section>
     </div>
   );
 }

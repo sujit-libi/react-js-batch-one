@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-RatingStar.propTypes = {
-  maxRating: PropTypes.number,
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
+// RatingStar.propTypes = {
+//   maxRating: PropTypes.number,
+//   color: PropTypes.string,
+//   size: PropTypes.number,
+// };
 
 export default function RatingStar({
   maxRating = 10,
-  color,
-  size,
+  color = '#fcc419',
+  size = 24,
   onSetRating,
 }) {
   const [rating, setRating] = useState(0);
