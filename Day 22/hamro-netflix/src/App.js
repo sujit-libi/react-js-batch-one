@@ -171,13 +171,22 @@ function MovieResultLength({ movies }) {
 
 function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie }) {
   const [movieDetail, setMovieDetail] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     async function getMovieDetailById() {
-      const response = await fetch(
-        `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movieId}`
-      );
-      const data = await response.json();
-      setMovieDetail(data);
+      try {
+        const response = await fetch(
+          `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${movieId}`
+        );
+        if (!response.ok) throw new Error('Something went wrong.');
+        const data = await response.json();
+        setMovieDetail(data);
+      } catch (error) {
+        console.error(error.message);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     getMovieDetailById();
@@ -197,42 +206,48 @@ function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie }) {
 
   return (
     <div className="details">
-      <header>
-        <button className="btn-back" onClick={handleCloseMovieDetail}>
-          &larr;
-        </button>
-        <img
-          src={movieDetail.Poster}
-          alt={`This poster is for ${movieDetail.Title}`}
-        />
-        <div className="details-overview">
-          <h1>{movieDetail.Title}</h1>
-          <p>
-            {movieDetail.Released} &bull; {movieDetail.Runtime}
-          </p>
-          <p>{movieDetail.Genre}</p>
-          <p>
-            <span>⭐️</span> {movieDetail.imdbRating} IMDB Rating
-          </p>
-        </div>
-      </header>
-      <section>
-        <div className="rating">
-          <RatingStar />
-          <button className="btn-add" onClick={handleOnAddWatchedMovie}>
-            + Add to list
-          </button>
-        </div>
-        <p>
-          Plot: <em>{movieDetail.Plot}</em>
-        </p>
-        <p>
-          Actor/Actress: <em>{movieDetail.Actors}</em>
-        </p>
-        <p>
-          Directed By: <em>{movieDetail.Director}</em>
-        </p>
-      </section>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <header>
+            <button className="btn-back" onClick={handleCloseMovieDetail}>
+              &larr;
+            </button>
+            <img
+              src={movieDetail.Poster}
+              alt={`This poster is for ${movieDetail.Title}`}
+            />
+            <div className="details-overview">
+              <h1>{movieDetail.Title}</h1>
+              <p>
+                {movieDetail.Released} &bull; {movieDetail.Runtime}
+              </p>
+              <p>{movieDetail.Genre}</p>
+              <p>
+                <span>⭐️</span> {movieDetail.imdbRating} IMDB Rating
+              </p>
+            </div>
+          </header>
+          <section>
+            <div className="rating">
+              <RatingStar />
+              <button className="btn-add" onClick={handleOnAddWatchedMovie}>
+                + Add to list
+              </button>
+            </div>
+            <p>
+              Plot: <em>{movieDetail.Plot}</em>
+            </p>
+            <p>
+              Actor/Actress: <em>{movieDetail.Actors}</em>
+            </p>
+            <p>
+              Directed By: <em>{movieDetail.Director}</em>
+            </p>
+          </section>
+        </>
+      )}
     </div>
   );
 }
