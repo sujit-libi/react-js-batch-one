@@ -43,7 +43,7 @@ export default function RatingStar({
 
   function handleSetRatingStar(rating) {
     setRating(rating);
-    onSetRating(rating);
+    if (onSetRating) onSetRating(rating);
   }
 
   return (

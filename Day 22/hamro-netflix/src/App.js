@@ -109,6 +109,10 @@ export default function App() {
     setSelectedMovieId(null);
   }
 
+  function onAddMovie(movieDetailObj) {
+    setWatched((watched) => [...watched, movieDetailObj]);
+  }
+
   return (
     <>
       <Navbar>
@@ -130,6 +134,7 @@ export default function App() {
           {selectedMovieId ? (
             <MovieDetail
               movieId={selectedMovieId}
+              onAddMovie={onAddMovie}
               handleCloseMovieDetail={handleCloseMovieDetail}
             />
           ) : (
@@ -164,7 +169,7 @@ function MovieResultLength({ movies }) {
   );
 }
 
-function MovieDetail({ movieId, handleCloseMovieDetail }) {
+function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie }) {
   const [movieDetail, setMovieDetail] = useState({});
   useEffect(() => {
     async function getMovieDetailById() {
@@ -173,11 +178,23 @@ function MovieDetail({ movieId, handleCloseMovieDetail }) {
       );
       const data = await response.json();
       setMovieDetail(data);
-      console.log(data, 'Movie detail');
     }
 
     getMovieDetailById();
   }, [movieId]);
+
+  function handleOnAddWatchedMovie() {
+    const newWatchedMovieObj = {
+      imdbID: movieDetail.imdbID,
+      Title: movieDetail.Title,
+      Poster: movieDetail.Poster,
+      imdbRating: Number(movieDetail.imdbRating),
+      runtime: movieDetail.Runtime.split(' ').at(0),
+    };
+    onAddMovie(newWatchedMovieObj);
+    handleCloseMovieDetail();
+  }
+
   return (
     <div className="details">
       <header>
@@ -202,7 +219,9 @@ function MovieDetail({ movieId, handleCloseMovieDetail }) {
       <section>
         <div className="rating">
           <RatingStar />
-          <button className="btn-add">+ Add to list</button>
+          <button className="btn-add" onClick={handleOnAddWatchedMovie}>
+            + Add to list
+          </button>
         </div>
         <p>
           Plot: <em>{movieDetail.Plot}</em>
