@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useRef } from 'react';
 import RatingStar from './RatingStar';
 
 const tempMovieData = [
@@ -58,7 +58,10 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(function () {
+    const storedMovie = localStorage.getItem('watched');
+    return JSON.parse(storedMovie);
+  });
 
   const [selectedMovieId, setSelectedMovieId] = useState(null);
 
@@ -128,6 +131,10 @@ export default function App() {
     );
   }
 
+  useEffect(() => {
+    localStorage.setItem('watched', JSON.stringify(watched));
+  }, [watched]);
+
   return (
     <>
       <Navbar>
@@ -191,6 +198,7 @@ function MovieResultLength({ movies }) {
 function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie, watched }) {
   const [movieDetail, setMovieDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
   // This will help us to set rating given by user to particular movie
   const [userRating, setUserRating] = useState('');
 
@@ -218,6 +226,18 @@ function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie, watched }) {
    * console.log(userObj?.job)
    *
    */
+
+  useEffect(() => {
+    function callback(event) {
+      if (event.key === 'Escape') {
+        handleCloseMovieDetail();
+      }
+    }
+    document.addEventListener('keydown', callback);
+    return () => {
+      document.removeEventListener('keydown', callback);
+    };
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
@@ -331,8 +351,20 @@ function Logo() {
 }
 
 function Searchbar({ query, setQuery }) {
+  // useEffect(() => {
+  //   const inputEl = document.querySelector('.search');
+  //   inputEl.focus();
+  // }, []);
+
+  const inputElRef = useRef(null);
+
+  useEffect(() => {
+    inputElRef.current.focus();
+  }, []);
+
   return (
     <input
+      ref={inputElRef}
       className="search"
       type="text"
       placeholder="Search movies..."
