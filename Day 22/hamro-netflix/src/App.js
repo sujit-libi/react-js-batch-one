@@ -1,54 +1,10 @@
-import { useState, useEffect, use, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import RatingStar from './RatingStar';
+
+import { useKey } from './hooks/useKey';
 import { useMovies } from './hooks/useMovies';
 import { useLocalStorageState } from './hooks/useLocalStorageState';
-
-const tempMovieData = [
-  {
-    imdbID: 'tt1375666',
-    Title: 'Inception',
-    Year: '2010',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',
-  },
-  {
-    imdbID: 'tt0133093',
-    Title: 'The Matrix',
-    Year: '1999',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg',
-  },
-  {
-    imdbID: 'tt6751668',
-    Title: 'Parasite',
-    Year: '2019',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg',
-  },
-];
-
-const tempWatchedData = [
-  {
-    imdbID: 'tt1375666',
-    Title: 'Inception',
-    Year: '2010',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',
-    runtime: 148,
-    imdbRating: 8.8,
-    userRating: 10,
-  },
-  {
-    imdbID: 'tt0088763',
-    Title: 'Back to the Future',
-    Year: '1985',
-    Poster:
-      'https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
-    runtime: 116,
-    imdbRating: 8.5,
-    userRating: 9,
-  },
-];
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -61,15 +17,6 @@ export default function App() {
 
   const [selectedMovieId, setSelectedMovieId] = useState(null);
   const { movies, isLoading, errorMessage } = useMovies(query);
-
-  // Using Promise
-  // useEffect(() => {
-  //   fetch(
-  //     `http://www.omdbapi.com/?i=tt3896198&apikey=${OMDB_API_KEY}&s=${movieName}`
-  //   )
-  //     .then((response) => response.json())
-  //     .then((data) => setMovies(data.Search));
-  // }, []);
 
   function handleSelectMovie(movieId) {
     setSelectedMovieId(movieId);
@@ -181,17 +128,7 @@ function MovieDetail({ movieId, handleCloseMovieDetail, onAddMovie, watched }) {
    *
    */
 
-  useEffect(() => {
-    function callback(event) {
-      if (event.key === 'Escape') {
-        handleCloseMovieDetail();
-      }
-    }
-    document.addEventListener('keydown', callback);
-    return () => {
-      document.removeEventListener('keydown', callback);
-    };
-  }, []);
+  useKey('Escape', handleCloseMovieDetail);
 
   useEffect(() => {
     setIsLoading(true);
@@ -312,19 +249,11 @@ function Searchbar({ query, setQuery }) {
 
   const inputElRef = useRef(null);
 
-  useEffect(() => {
-    function callback(event) {
-      if (event.key === 'Enter') {
-        inputElRef.current.focus();
-        setQuery('');
-      }
-    }
-
-    document.addEventListener('keydown', callback);
-    return function () {
-      document.removeEventListener('keydown', callback);
-    };
-  }, []);
+  useKey('Enter', function () {
+    if (document.activeElement === inputElRef.current) return;
+    inputElRef.current.focus();
+    setQuery('');
+  });
 
   return (
     <input
