@@ -6,7 +6,6 @@ export function useMovies(query) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
   // Using Async Await
   useEffect(() => {
     const controller = new AbortController();
@@ -48,7 +47,7 @@ export function useMovies(query) {
 
   return {
     movies,
-    errorMessage,
     isLoading,
+    errorMessage,
   };
 }
