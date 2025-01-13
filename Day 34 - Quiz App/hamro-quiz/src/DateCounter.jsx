@@ -23,7 +23,7 @@ function reducer(state, action) {
   // if (action.type === 'defineCount') return { ...state, count: action.payload };
   // if (action.type === 'defineStep') return { ...state, step: action.payload };
   // if (action.type === 'reset') return { count: 0, step: 1 };
-  return { ...state };
+  // return { ...state };
 }
 
 function DateCounter() {
