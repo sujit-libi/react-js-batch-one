@@ -2,10 +2,16 @@ import { useEffect, useReducer } from 'react';
 
 import Header from './Header';
 import Main from './Main';
+import Loader from './Loader';
+import Error from './Error';
+import LandingScreen from './LandingScreen';
+import Question from './Question';
 
 const initialState = {
+  index: 0,
   questions: [],
   errorMessage: '',
+  status: 'loading', // loading, error, ready, active, finished
 };
 
 function reducer(state, action) {
@@ -14,12 +20,20 @@ function reducer(state, action) {
       return {
         ...state,
         questions: action.payload,
+        status: 'ready',
       };
 
     case 'dataFailed':
       return {
         ...state,
         errorMessage: 'Something went wrong',
+        status: 'error',
+      };
+
+    case 'startQuiz':
+      return {
+        ...state,
+        status: 'active',
       };
 
     default:
@@ -29,10 +43,10 @@ function reducer(state, action) {
 
 function App() {
   // implement your fake api in react app: http://localhost:8000/questions
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  // const [questions, setQuestion] = useState([])
-  // const [errorMessage, setErrorMessage] = useState('')
+  const [{ status, questions, index }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   useEffect(() => {
     fetch('http://localhost:8000/questions')
@@ -40,14 +54,16 @@ function App() {
       .then((data) => dispatch({ type: 'dataReceived', payload: data })) // setQuestion(data)
       .catch((err) => dispatch({ type: 'dataFailed' })); // setErrorMessage(error.message)
   }, []);
+
   return (
     <div className="app">
       <Header />
       <Main>
-        <h2>Welcome to the hamro quiz app</h2>
-        <h3>There are X questions to be answered and become react mastery</h3>
+        {status === 'loading' && <Loader />}
+        {status === 'error' && <Error />}
+        {status === 'ready' && <LandingScreen dispatch={dispatch} />}
+        {status === 'active' && <Question question={questions[index]} />}
       </Main>
-      <button className="btn btn-ui">Let's Start</button>
     </div>
   );
 }
