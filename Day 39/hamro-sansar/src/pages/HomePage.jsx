@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
 
-function About() {
+function HomePage() {
   return (
     <div>
       <Navbar />
-      This page is for About
+      This is home page for hamro sansar
     </div>
   );
 }
 
-export default About;
+export default HomePage;
