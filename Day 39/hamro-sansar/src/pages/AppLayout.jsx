@@ -1,12 +1,15 @@
 import React from 'react';
 import styles from './AppLayout.module.css';
-import AppNav from '../components/AppNav';
+import Sidebar from '../components/Sidebar';
+import Map from '../components/Map';
 
 function AppLayout() {
   return (
     <div className={styles.app}>
-      <AppNav />
-      This is dashboard
+      {/** Sidebar */}
+      <Sidebar />
+      {/** Map Container */}
+      <Map />
     </div>
   );
 }
