@@ -21,6 +21,9 @@ export default function Homepage() {
           <Link to="/dashboard" className="cta">
             Start tracking
           </Link>
+          <button to="/dashboard" className="cta">
+            Start Tracking from btn
+          </button>
         </section>
       </main>
     </>

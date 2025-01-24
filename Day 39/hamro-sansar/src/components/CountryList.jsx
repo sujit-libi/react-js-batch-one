@@ -1,18 +1,17 @@
 import React from 'react';
-import CityItem from './CityItem';
-import styles from './CityList.module.css';
+// import CityItem from './CityItem';
+import styles from './CountryList.module.css';
 import { Link } from 'react-router-dom';
 
-function CityList({ cities }) {
+function CountryList({ cities }) {
   return (
     <div>
       <ul className={styles.cityList}>
         {cities.map((city, index) => {
-          console.log(city, 'Main');
           // return <CityItem city={city} key={index} />;
           return (
             <Link to={`${city.id}?lng=12&lat=23&name=bishnu`}>
-              {city.cityName}
+              {city.country}
             </Link>
           );
         })}
@@ -21,4 +20,4 @@ function CityList({ cities }) {
   );
 }
 
-export default CityList;
+export default CountryList;

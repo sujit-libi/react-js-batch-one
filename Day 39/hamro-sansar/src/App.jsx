@@ -9,6 +9,8 @@ import PageNotFound from './pages/PageNotFound';
 import HomePage from './pages/HomePage';
 import AppLayout from './pages/AppLayout';
 import CityList from './components/CityList';
+import City from './components/City';
+import CountryList from './components/CountryList';
 
 function App() {
   const [cities, setCities] = useState([]);
@@ -20,7 +22,7 @@ function App() {
         setIsLoading(true);
         const response = await fetch(`http://localhost:8080/cities`);
         const data = await response.json();
-        console.log(data);
+        // console.log(data, 'glgasdf');
         setCities(data);
       } catch (error) {
         console.error(error);
@@ -41,9 +43,10 @@ function App() {
         <Route path="/about" element={<About />} />
 
         <Route path="dashboard" element={<AppLayout />}>
-          <Route index element={<h1>this is country section</h1>} />
-          <Route path="country" element={<h1>this is country section</h1>} />
+          <Route index element={<CityList cities={cities} />} />
+          <Route path="country" element={<CountryList cities={cities} />} />
           <Route path="cities" element={<CityList cities={cities} />} />
+          <Route path="cities/:id" element={<City />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
