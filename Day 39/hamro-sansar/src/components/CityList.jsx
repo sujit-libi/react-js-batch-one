@@ -1,23 +1,23 @@
 import React from 'react';
 import CityItem from './CityItem';
 import styles from './CityList.module.css';
-import { Link } from 'react-router-dom';
+import Spinner from './Spinner';
+import Message from './Message';
 
-function CityList({ cities }) {
+function CityList({ cities, isLoading }) {
+  console.log({ cities, isLoading });
+  if (isLoading) return <Spinner />;
+  if (!cities.length)
+    return (
+      <Message message="Add your first city by clicking on a city on the map" />
+    );
+
   return (
-    <div>
-      <ul className={styles.cityList}>
-        {cities.map((city, index) => {
-          console.log(city, 'Main');
-          // return <CityItem city={city} key={index} />;
-          return (
-            <Link to={`${city.id}?lng=12&lat=23&name=bishnu`}>
-              {city.cityName}
-            </Link>
-          );
-        })}
-      </ul>
-    </div>
+    <ul className={styles.cityList}>
+      {cities.map((city, index) => {
+        return <CityItem city={city} key={city.id} />;
+      })}
+    </ul>
   );
 }
 

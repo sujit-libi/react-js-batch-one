@@ -1,28 +1,24 @@
 import React from 'react';
 import styles from './Map.module.css';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams, 'Query String');
+  const navigate = useNavigate();
   let lat = searchParams.get('lat');
   let lng = searchParams.get('lng');
-  let name = searchParams.get('name');
   return (
-    <div className={styles.mapContainer}>
-      <h2>
-        {lat} {lng} {name}
-      </h2>
+    <div className={styles.mapContainer} onClick={() => navigate('form')}>
+      <h1>Map</h1>
+      <h1>
+        Position: {lat}, {lng}
+      </h1>
       <button
-        onClick={() =>
-          setSearchParams({
-            lat: 234234234,
-            name: 'ayush',
-            lng: 'dfsdfd',
-          })
-        }
+        onClick={() => {
+          setSearchParams({ lag: 23, lng: 50 });
+        }}
       >
-        Click me
+        Change pos
       </button>
     </div>
   );
