@@ -1,12 +1,15 @@
-import styles from "./Login.module.css";
+import styles from './Login.module.css';
+import { useState } from 'react';
+import Navbar from '../components/Navbar';
 
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
+  const [email, setEmail] = useState('jack@example.com');
+  const [password, setPassword] = useState('qwerty');
 
   return (
     <main className={styles.login}>
+      <Navbar />
       <form className={styles.form}>
         <div className={styles.row}>
           <label htmlFor="email">Email address</label>

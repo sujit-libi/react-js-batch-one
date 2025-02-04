@@ -1,8 +1,10 @@
 import styles from './Product.module.css';
+import Navbar from '../components/Navbar';
 
 export default function Product() {
   return (
     <main className={styles.product}>
+      <Navbar />
       <section>
         <img
           src="img-1.jpg"
