@@ -18,7 +18,7 @@ function Navbar() {
         </li>
         <li>
           {/* <a href="/about">About</a> */}
-          <NavLink to="/about">About</NavLink>
+          <NavLink to="/login">Login</NavLink>
         </li>
       </ul>
     </div>
