@@ -1,4 +1,5 @@
 import './index.css';
+import { useReducer, useState } from 'react';
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -24,20 +25,48 @@ const initialState = {
   isActive: false,
 };
 
+function reducer(state, action) {
+  switch (action.type) {
+    case 'OPEN_ACCOUNT':
+      return {
+        ...state,
+        balance: 1000,
+      };
+    case 'DEPOSIT':
+      return {
+        ...state,
+        balance: state.balance + action.payload,
+      };
+    default:
+      return initialState;
+  }
+}
+
 export default function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div className="App">
       <h1>Hamro Bank Account (useReducer Practices Task)</h1>
-      <p>Balance: X</p>
+      <p>Balance: {state.balance}</p>
       <p>Loan: X</p>
 
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button
+          onClick={() => {
+            dispatch({ type: 'OPEN_ACCOUNT' });
+          }}
+          disabled={false}
+        >
           Open account
         </button>
       </p>
       <p>
-        <button onClick={() => {}} disabled={false}>
+        <button
+          onClick={() => {
+            dispatch({ type: 'DEPOSIT', payload: 3000 });
+          }}
+          disabled={false}
+        >
           Deposit 150
         </button>
       </p>
