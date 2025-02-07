@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useReducer, useState } from 'react';
 
@@ -19,35 +20,15 @@ INSTRUCTIONS / CONSIDERATIONS:
 7. Customer can only close an account if there is no loan, AND if the balance is zero. If this condition is not met, just return the state. If the condition is met, the account is deactivated and all money is withdrawn. The account basically gets back to the initial state
 */
 
-const initialState = {
-  balance: 0,
-  loan: 0,
-  isActive: false,
-};
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'OPEN_ACCOUNT':
-      return {
-        ...state,
-        balance: 1000,
-      };
-    case 'DEPOSIT':
-      return {
-        ...state,
-        balance: state.balance + action.payload,
-      };
-    default:
-      return initialState;
-  }
-}
-
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, dispatch] = useReducer(reducer, initialState);
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  console.log(state);
   return (
     <div className="App">
       <h1>Hamro Bank Account (useReducer Practices Task)</h1>
-      <p>Balance: {state.balance}</p>
+      <p>Balance: {state.bank.balance}</p>
       <p>Loan: X</p>
 
       <p>
