@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useReducer, useState } from 'react';
+import { getAdvice, openAccount } from './bankSlice';
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -24,7 +25,6 @@ export default function App() {
   // const [state, dispatch] = useReducer(reducer, initialState);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(state);
   return (
     <div className="App">
       <h1>Hamro Bank Account (useReducer Practices Task)</h1>
@@ -34,7 +34,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: 'OPEN_ACCOUNT' });
+            dispatch(openAccount());
           }}
           disabled={false}
         >
@@ -44,7 +44,7 @@ export default function App() {
       <p>
         <button
           onClick={() => {
-            dispatch({ type: 'DEPOSIT', payload: 3000 });
+            dispatch(deposit(3000));
           }}
           disabled={false}
         >
@@ -71,6 +71,17 @@ export default function App() {
           Close account
         </button>
       </p>
+
+      <p>
+        <button
+          onClick={() => {
+            dispatch(getAdvice());
+          }}
+        >
+          Get Advice
+        </button>
+      </p>
+      <span>{state.bank.advice}</span>
     </div>
   );
 }

@@ -1,16 +1,17 @@
 import { useReducer } from 'react';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
 import { bankReducer } from './bankSlice';
 import { userReducer } from './userSlice';
 
 // const [] = useReducer(reducer, initialState)
 
-const store = createStore(
-  combineReducers({
-    bank: bankReducer,
-    user: userReducer,
-  })
-);
+const rootReducer = combineReducers({
+  bank: bankReducer,
+  user: userReducer,
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
 
