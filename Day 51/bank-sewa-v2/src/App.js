@@ -1,7 +1,7 @@
-import CreateCustomer from './CreateCustomer';
-import Customer from './Customer';
-import AccountOperations from './AccountOperations';
-import BalanceDisplay from './BalanceDisplay';
+import CreateCustomer from './container/customers/CreateCustomer';
+import Customer from './container/customers/Customer';
+import AccountOperations from './container/accounts/AccountOperations';
+import BalanceDisplay from './container/accounts/BalanceDisplay';
 import { useSelector } from 'react-redux';
 
 function App() {
