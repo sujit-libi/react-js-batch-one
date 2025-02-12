@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './index.css';
 import { useReducer, useState } from 'react';
 import { getAdvice, openAccount } from './bankSlice';
+import { Button } from '@/components/ui/button';
 
 /*
 INSTRUCTIONS / CONSIDERATIONS:
@@ -77,11 +78,16 @@ export default function App() {
           onClick={() => {
             dispatch(getAdvice());
           }}
+          className="bg-lime-400 text-white p-2 rounded-md hover:bg-rose-500 cursor-progress"
         >
           Get Advice
         </button>
       </p>
       <span>{state.bank.advice}</span>
+
+      <div>
+        <Button className="bg-lime-300 hover:bg-fuchsia-500">Click me</Button>
+      </div>
     </div>
   );
 }
