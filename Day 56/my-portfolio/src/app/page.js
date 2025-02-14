@@ -45,7 +45,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="text-center py-10 bg-white-100">
+      <section className="text-center py-10 bg-white-100 bg-linear-to-r from-cyan-500 to-blue-500">
         <h1 className="text-3xl font-bold">Github Repo</h1>
         <p className="mt-4 text-lg max-w-2xl mx-auto">
           I am a passionate software developer with experience in building
