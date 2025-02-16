@@ -30,7 +30,7 @@ function TechStack() {
               // quality={1}
               alt={technology}
               key={index}
-              className="border p-4 rounded-lg hover:border-gray-500"
+              className="border p-4 rounded-lg hover:border-green-500"
               // className="border p-4 rounded-lg hover:border-gray-500"
             />
           );
