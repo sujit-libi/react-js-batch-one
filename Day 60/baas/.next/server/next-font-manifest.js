@@ -1,0 +1,1 @@
+self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/sujit/Downloads/Dubo/ReactJS/Day 60/baas/app/layout\":[\"static/media/a3a474206a856479-s.p.woff2\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"

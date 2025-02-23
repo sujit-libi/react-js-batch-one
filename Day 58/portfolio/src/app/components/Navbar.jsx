@@ -35,6 +35,9 @@ function Navbar() {
         <li>
           <Link href="/projects">Projects</Link>
         </li>
+        <li>
+          <Link href="/login">Login</Link>
+        </li>
       </ul>
     </div>
   );

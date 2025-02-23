@@ -1,0 +1,78 @@
+{
+  "node": {
+    "0ec486199c2882e6fa2cecb28d59c5db9f7ee370": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    },
+    "2023f3290f2132a12ef41791a9e240ed500fd8e0": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    },
+    "80ef58fe247da437c7840a301f5a8f154d2ff10f": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    },
+    "b8f0cad989b14cf70775a7bc30f546df43b5d6e7": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    },
+    "ef70dc110db149ba7669aaaa372a9575cd04994f": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    },
+    "ffa4aa0342a99de27fff93b2c366f319b2d02b57": {
+      "workers": {
+        "app/login/page": "(rsc)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=!",
+        "app/account/profile/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!",
+        "app/account/reservations/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2FUsers%2Fsujit%2FDownloads%2FDubo%2FReactJS%2FDay%2060%2Fbaas%2Fapp%2F_lib%2Factions.js%22%2C%5B%22createBooking%22%2C%22deleteBooking%22%2C%22signInAction%22%2C%22signOutAction%22%2C%22updateGuest%22%2C%22updateBooking%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "rsc",
+        "app/account/profile/page": "action-browser",
+        "app/account/reservations/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "7PzPW4HvzZlACWNeyVC7Fbg57AoaZeCpsI0/Q/RDDTI="
+}
